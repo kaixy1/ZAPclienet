@@ -22,17 +22,30 @@ zap.context.set_context_in_scope('KaiTest', True)
 zap.core.set_mode('protect')
 
 
+print(zap.core.alerts_summary())
+print(zap.core.alerts(start= 0, count = 3))
+print(zap.core.alerts(start= 0, count = 3, riskid='risk'))  # What is the riskid here????
+
+with open('report.html', 'w') as f:f.write(zap.core.htmlreport())
+
+
+#May be ran a PScan/aScan
+#Get the results
+#Shutdown Once Finished
+zap.core.shutdown()
+
 # TODO : explore the app (Spider, etc) before using the Passive Scan API, Refer the explore section for details
-scanID = zap.spider.scan(target)
-while int(zap.pscan.records_to_scan) > 0:
-    # Loop until the passive scan has finished
-    print('Records to passive scan : ' + zap.pscan.records_to_scan)
-    time.sleep(2)
+# scanID = zap.spider.scan(target)
 
-print('Passive Scan completed')
-print('target:1122 {}'.format(target))
+# while int(zap.pscan.records_to_scan) > 0:
+#     # Loop until the passive scan has finished
+#     print('Records to passive scan : ' + zap.pscan.records_to_scan)
+#     time.sleep(2)
 
-# Print Passive scan results/alerts
-print('Hosts: {}'.format(', '.join(zap.core.hosts)))
-print('Alerts: ')
-pprint(zap.core.alerts())
+# print('Passive Scan completed')
+# print('target:1122 {}'.format(target))
+
+# # Print Passive scan results/alerts
+# print('Hosts: {}'.format(', '.join(zap.core.hosts)))
+# print('Alerts: ')
+# pprint(zap.core.alerts())

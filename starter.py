@@ -1,11 +1,20 @@
 import time
 from pprint import pprint
 from zapv2 import ZAPv2
+import subprocess
+from config import*
 
-apiKey = 'f0cado3e1692kn0nb3g0l6mvd6'
+apiKey = APIKEY
 target = 'https://juice-shop.herokuapp.com/#/'
 target1 = 'https://juice-shop.herokuapp.com.*'
 excludeURL= '(?!https://juice-shop.herokuapp.com).*'
+
+#start Burp
+subprocess.call(r'C:\Program Files\OWASP\Zed Attack Proxy\zap.bat)
+
+#Change browser proxy setting
+
+time.sleep(20)
 
 
 zap = ZAPv2(apikey=apiKey)

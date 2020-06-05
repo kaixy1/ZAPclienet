@@ -6,14 +6,13 @@ from config import*
 
 apiKey = APIKEY
 target = 'https://juice-shop.herokuapp.com/#/'
-target1 = 'https://juice-shop.herokuapp.com.*'
+targetRegex = 'https://juice-shop.herokuapp.com.*'
 excludeURL= '(?!https://juice-shop.herokuapp.com).*'
 
 #start Burp
-subprocess.call(r'C:\Program Files\OWASP\Zed Attack Proxy\zap.bat)
+#subprocess.call(r'C:\Program Files\OWASP\Zed Attack Proxy\zap.bat)
 
 #Change browser proxy setting
-
 time.sleep(20)
 
 
@@ -24,7 +23,7 @@ zap.context.remove_context(contextname = 'Default Context')
 #Exclude from Proxy
 zap.core.exclude_from_proxy(excludeURL)
 #Add include target to scope
-zap.context.include_in_context('KaiTest',target1)
+zap.context.include_in_context('KaiTest',targetRegex)
 zap.context.set_context_in_scope('KaiTest', True)
 #Change Mode
 #Sets the mode, which may be one of [safe, protect, standard, attack]

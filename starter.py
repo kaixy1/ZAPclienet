@@ -21,11 +21,13 @@ zap.context.set_context_in_scope('KaiTest', True)
 #Sets the mode, which may be one of [safe, protect, standard, attack]
 zap.core.set_mode('protect')
 
-
-print(zap.core.alerts_summary())
-print(zap.core.alerts(start= 0, count = 3))
-print(zap.core.alerts(start= 0, count = 3, riskid='risk'))  # What is the riskid here????
-
+summaryalert = zap.core.alerts_summary()
+print(summaryalert['Medium'])
+#print(zap.core.alerts(start= 0, count = 3))
+#print(zap.core.alerts(start= 0, count = summaryalert['Medium'], riskid='2')) # riskid = Severity
+with open('alerts1.txt','w') as f:
+    for listitem in zap.core.alerts(start= 0, count = summaryalert['Medium'], riskid='2'):
+        f.write('%s\n' % listitem)
 with open('report.html', 'w') as f:f.write(zap.core.htmlreport())
 
 

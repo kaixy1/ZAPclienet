@@ -25,22 +25,27 @@ zap.core.exclude_from_proxy(excludeURL)
 #Add include target to scope
 zap.context.include_in_context('KaiTest',targetRegex)
 zap.context.set_context_in_scope('KaiTest', True)
-#Change Mode
+
 #Sets the mode, which may be one of [safe, protect, standard, attack]
 zap.core.set_mode('protect')
+#?Wait till Functional test is done
+#?Run a PScan/aScan
 
+
+###Results 
 summaryalert = zap.core.alerts_summary()
 print(summaryalert['Medium'])
-#print(zap.core.alerts(start= 0, count = 3))
+
 #print(zap.core.alerts(start= 0, count = summaryalert['Medium'], riskid='2')) # riskid = Severity
+
+#Get all Medium risk into a file
 with open('alerts1.txt','w') as f:
     for listitem in zap.core.alerts(start= 0, count = summaryalert['Medium'], riskid='2'):
         f.write('%s\n' % listitem)
+#Create a Report 
 with open('report.html', 'w') as f:f.write(zap.core.htmlreport())
 
 
-#Ran a PScan/aScan
-#Get the results
 #Shutdown Once Finished
 zap.core.shutdown()
 

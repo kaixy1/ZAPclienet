@@ -31,7 +31,7 @@ with open('alerts1.txt','w') as f:
 with open('report.html', 'w') as f:f.write(zap.core.htmlreport())
 
 
-#May be ran a PScan/aScan
+#Ran a PScan/aScan
 #Get the results
 #Shutdown Once Finished
 zap.core.shutdown()
